@@ -33,17 +33,21 @@ export class App extends Component {
   state = { ...initialState };
 
   componentDidMount() {
-    const parsedContacts = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const savedContacts = localStorage.getItem(STORAGE_KEY);
 
-    if (parsedContacts.length) {
+    if (savedContacts !== null) {
+      const parsedContacts = JSON.parse(savedContacts);
+
       return this.setState({ contacts: parsedContacts });
     }
 
     this.setState({ contacts: initialState.contacts });
   }
 
-  componentDidUpdate() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.contacts));
+  componentDidUpdate(_, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.contacts));
+    }
   }
 
   onSubmit = (values, actions) => {
