@@ -4,7 +4,7 @@ import { Form as FormikForm } from 'formik';
 export const Form = styled(FormikForm)`
   display: flex;
   flex-direction: column;
-  width: 260px;
+  width: 245px;
   gap: 12px;
 `;
 

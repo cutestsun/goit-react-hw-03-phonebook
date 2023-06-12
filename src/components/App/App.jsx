@@ -25,7 +25,10 @@ const validationSchema = yup.object({
   name: yup.string().required('This field is required'),
   number: yup
     .string()
-    .phone(null, 'Please enter a valid phone number')
+    .phone(
+      null,
+      `Please enter a valid phone number in an international format. Example: +380 501234567`
+    )
     .required('This field is required'),
 });
 
